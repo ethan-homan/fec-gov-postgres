@@ -40,23 +40,24 @@ For example, this query will show expenditures by committees in opposition of a 
 by election cycle:
 
 ```sql
-SELECT SUM(ccc.transaction_amt) transaction_total, 
-       cm.cmte_nm committee_name, 
-       cm.file_year, 
-       cand.cand_name candidate_name 
-FROM   committee_candidate_contributions ccc 
-       JOIN committee_master cm 
-         ON cm.cmte_id = ccc.cmte_id AND cm.file_year = ccc.file_year 
-       JOIN candidate_master cand 
-         ON cand.cand_id = ccc.cand_id AND cand.file_year = ccc.file_year 
-WHERE  ( ccc.transaction_tp = '24A' OR ccc.transaction_tp = '24N' ) 
--- https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions/ 
-GROUP  BY cm.file_year, 
-          ccc.cand_id, 
-          cand.cand_name, 
-          cm.cmte_nm 
-ORDER  BY transaction_total DESC 
-LIMIT  100 
+SELECT
+    SUM(ccc.transaction_amt) transaction_total,
+    cm.cmte_nm committee_name,
+    cm.file_year,
+    cand.cand_name candidate_name
+FROM committee_candidate_contributions ccc
+JOIN committee_master cm
+ON cm.cmte_id = ccc.cmte_id AND cm.file_year = ccc.file_year
+JOIN candidate_master cand
+ON cand.cand_id = ccc.cand_id AND cand.file_year = ccc.file_year
+WHERE (ccc.transaction_tp = '24A' OR ccc.transaction_tp = '24N') -- https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions/
+GROUP BY
+    cm.file_year,
+    ccc.cand_id,
+    cand.cand_name,
+    cm.cmte_nm
+ORDER BY transaction_total DESC
+LIMIT 100
 ```
 
 This will show the employers who are listed most often in individual contributions
