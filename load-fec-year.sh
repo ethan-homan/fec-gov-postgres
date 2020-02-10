@@ -19,7 +19,8 @@ download_year() {
       echo  $(full_url $1 $year)
       curl -s $(full_url $1 $year) | \
         funzip | \
-        iconv -c -t UTF-8 \
+        iconv -c -t UTF-8 | \
+        tr -d '\010' \
         > "./data/$year/$2.txt"
     done
 }
