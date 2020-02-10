@@ -1,5 +1,7 @@
 # Load FEC Bulk Data into Postgres
 
+WORK IN PROGRESS: There are a few tables that still need to be mapped to the postgres schema.
+
 The FEC publishes individual and PAC contributions to candidates in a
 [searchable web app](https://www.fec.gov/data/) and as
 [bulk downloads](https://www.fec.gov/data/browse-data/?tab=bulk-data). The goal of this project
