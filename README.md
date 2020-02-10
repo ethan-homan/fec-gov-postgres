@@ -17,10 +17,8 @@ This repo consists of three main functional components right now:
 All of these components are stitched together in `load-fec-year.sh` and it can be used like this
 to load download data from 2020 and load it into a postgres database:
 ```bash
-./load-fec-year.sh 2020
+sh load-fec-year.sh 2020
 ```
-
-If this fails you may need to run `chmod +x ./load-fec-year.sh`
 
 Specify postgres configurations in environment variables by following the official
 [postgres documentation](https://www.postgresql.org/docs/9.3/libpq-envars.html).
