@@ -12,6 +12,18 @@ is to make the published bulk data easily accessible for analysis in a database.
 
 ## Getting Started
 
+### Setting up Postgres
+
+#### Using Homebrew (OSX)
+This will install postgres on your machine and then start it as a service. If you do this
+then there is no further configuration needed to use the scripts here.
+```bash
+brew install postres
+brew services start postgres
+```
+
+### Loading Data
+
 This repo consists of three main functional components right now:
 1. A set of postgres table definitions that are compatible with the schema published by the FEC and
    the data available in their bulk downloads. These are annotated with the comments in the
