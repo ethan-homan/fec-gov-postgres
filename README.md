@@ -1,5 +1,8 @@
 # Load FEC Bulk Data into Postgres
 
+**Please read [this note from the FEC](https://www.fec.gov/updates/sale-or-use-contributor-information/)
+on permissible use of this data before cloning or contributing**
+
 WORK IN PROGRESS: There are a few tables that still need to be mapped to the postgres schema.
 
 The FEC publishes individual and PAC contributions to candidates in a
