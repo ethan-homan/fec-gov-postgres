@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS committee_master (
     org_tp VARCHAR (1), -- ORG_TP,Interest group category,13,Y,VARCHAR2(1),C = Corporation L = Labor organization M = Membership organization T = Trade association V = Cooperative W = Corporation without capital stock,C
     connected_org_nm VARCHAR (200), -- CONNECTED_ORG_NM,Connected organization's name,14,Y,VARCHAR2(200),,Widgets, Incorporated
     cand_id VARCHAR (9),  -- CAND_ID,Candidate identification,15,Y,VARCHAR2(9),When a committee has a committee type designation of H, S, or P, the candidate's identification number will be entered in this field.,H1VA01225
-    file_year integer,
+    file_year INTEGER,
     PRIMARY KEY (cmte_id, file_year)
 );

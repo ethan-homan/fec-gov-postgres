@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS candidate_master (
     cand_city varchar (30), -- CAND_CITY,Mailing address - city,13,Y,VARCHAR2(30),Mailing address - city,Alexandria
     cand_st varchar (2), -- CAND_ST,Mailing address - state,14,Y,VARCHAR2(2),Mailing address - state,VA
     cand_zip varchar (9), -- CAND_ZIP,Mailing address - ZIP code,15,Y,VARCHAR2(9),Mailing address - ZIP code,22201
-    file_year integer,
+    file_year INTEGER,
     PRIMARY KEY (cand_id, file_year)
 );

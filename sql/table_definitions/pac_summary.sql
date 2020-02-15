@@ -29,6 +29,6 @@ CREATE TABLE IF NOT EXISTS pac_summary (
     pty_coord_exp numeric, -- PTY_COORD_EXP,Party coordinated expenditures,25,Y,Number(14,2),,0.00
     nonfed_share_exp numeric, -- NONFED_SHARE_EXP,Nonfederal share expenditures,26,Y,Number(14,2),,0.00
     cvg_end_dt varchar(100), -- CVG_END_DT,Coverage end date,27,Y,DATE(MM/DD/YYYY),Through date,04/30/2018
-    file_year integer,
+    file_year INTEGER,
     PRIMARY KEY (cmte_id, file_year)
 );

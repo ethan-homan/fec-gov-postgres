@@ -1,7 +1,7 @@
 
--- https://www.fec.gov/campaign-finance-data/contributions-committees-candidates-file-description/
+-- https://www.fec.gov/campaign-finance-data/any-transaction-one-committee-another-file-description/
 
-CREATE TABLE IF NOT EXISTS committee_candidate_contributions (
+CREATE TABLE IF NOT EXISTS committee_transactions (
     cmte_id varchar(9), -- CMTE_ID|Filer identification number|1|N|VARCHAR2 (9)|A 9-character alpha-numeric code assigned to a committee by the Federal Election Commission|C00100005
     amndt_ind varchar(1), -- AMNDT_IND|Amendment indicator|2|Y|VARCHAR2 (1)|Indicates if the report being filed is new (N), an amendment (A) to a previous report or a termination (T) report.|A
     rpt_tp varchar(3), -- RPT_TP|Report type|3|Y|VARCHAR2 (3)|Indicates the type of report filed. List of report type codes|Q2
@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS committee_candidate_contributions (
     transaction_dt varchar(38), -- TRANSACTION_DT|Transaction date (MMDDYYYY)|14|Y|DATE|05112018
     transaction_amt numeric, -- TRANSACTION_AMT|Transaction amount|15|Y|NUMBER (14,2)|5000.00
     other_id varchar(9), -- OTHER_ID|Other identification number|16|Y|VARCHAR2 (9)|For contributions from individuals this column is null. For contributions from candidates or other committees this column will contain that contributor's FEC ID.|C00100502
-    cand_id varchar(9), -- CAND_ID|Candidate ID|17|Y|VARCHAR2 (9)|A 9-character alpha-numeric code assigned to a candidate by the Federal Election Commission. The candidate ID for a specific candidate remains the same across election cycles as long as the candidate is running for the same office.|H8VA01233
     tran_id varchar(32), -- TRAN_ID|Transaction ID|18|Y|VARCHAR2 (32)|ONLY VALID FOR ELECTRONIC FILINGS. A unique identifier associated with each itemization or transaction appearing in an FEC electronic file. A transaction ID is unique for a specific committee for a specific report. In other words, if committee, C1, files a Q3 New with transaction SA123 and then files 3 amendments to the Q3 transaction SA123 will be identified by transaction ID SA123 in all 4 filings.|SA11AI.8317
     file_num integer, -- FILE_NUM|File number / Report ID|19|Y|NUMBER (22)|Unique report id|1197695
     memo_cd varchar(1), -- MEMO_CD|Memo code|20|Y|VARCHAR2 (1)|'X' indicates that the amount is NOT to be included in the itemization total.|X

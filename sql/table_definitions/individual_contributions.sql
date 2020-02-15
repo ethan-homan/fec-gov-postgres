@@ -25,6 +25,6 @@ CREATE TABLE IF NOT EXISTS individual_contributions (
     memo_cd varchar(1),  --MEMO_CD,Memo code,19,Y,VARCHAR2 (1),'X' indicates that the amount is NOT to be included in the itemization total.,X
     memo_text varchar(100),  --MEMO_TEXT,Memo text,20,Y,VARCHAR2 (100),A description of the activity. Memo Text is available on itemized amounts on Schedules A and B. These transactions are included in the itemization total.,Reattributed from John Adams 10/5/18
     sub_id varchar(100),  --SUB_ID,FEC record number,21,N,NUMBER (19),Unique row ID,1234567891234567891
-    file_year integer,
+    file_year INTEGER,
     PRIMARY KEY (sub_id, file_year)
 );

@@ -12,7 +12,7 @@ download_year() {
   year=$1
   mkdir -p ./data/$year
   echo "Downloading files for year $year:"
-  for dataset_tuple in "cn candidate_master" "ccl candidate_committee_linkages" "webl house_senate_current_campaigns" "cm committee_master" "webk pac_summary" "indiv individual_contributions" "pas2 committee_candidate_contributions" "oth committee_transactions" "oppexp operating_expenditures"
+  for dataset_tuple in "cn candidate_master" "ccl candidate_committee_linkages" "webl house_senate_current_campaigns" "cm committee_master" "webk pac_summary" "pas2 committee_candidate_contributions" "oth committee_transactions" "oppexp operating_expenditures"
     do
       set -- $dataset_tuple
       echo  "downloading $2 ..."
