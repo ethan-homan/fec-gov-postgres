@@ -1,6 +1,6 @@
 # Load FEC Bulk Data into Postgres
 
-**Please read [this note from the FEC](https://www.fec.gov/updates/sale-or-use-contributor-information/)
+**Please read [this note from the Federal Election Commission](https://www.fec.gov/updates/sale-or-use-contributor-information/)
 on permissible use of this data before cloning or contributing**
 
 The FEC publishes individual and PAC contributions to candidates in a
