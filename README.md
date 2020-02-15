@@ -17,13 +17,18 @@ This repo consists of three main functional components right now:
 3. A bash function that downloads files from the FEC's public S3 bucket.
 
 All of these components are stitched together in `load-fec-year.sh` and it can be used like this
-to load download data from 2020 and load it into a postgres database:
+to load data from the last two election cycles -- 2020 and 2018 -- into a postgres database:
 ```bash
-sh load-fec-year.sh 2020
+sh load-fec-year.sh 2020 2018
 ```
 
 Specify postgres configurations in environment variables by following the official
-[postgres documentation](https://www.postgresql.org/docs/9.3/libpq-envars.html).
+[postgres documentation](https://www.postgresql.org/docs/9.3/libpq-envars.html) and
+running something like:
+
+```bash
+PGHOST=localhost PGUSER=postgres PGPASSWORD=mysecretpass sh load-fec-year.sh 2020 2018
+```
 
 ## Schema Changes
 

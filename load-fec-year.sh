@@ -48,5 +48,8 @@ pg_load_table_year() {
 }
 
 pg_register_functions
-download_year $1
-pg_load_year $1
+for year in "$@"
+do
+  download_year $year
+  pg_load_year $year
+done
