@@ -12,16 +12,28 @@ download_year() {
   year=$1
   mkdir -p ./data/$year
   echo "Downloading files for year $year:"
-  for dataset_tuple in "cn candidate_master" "ccl candidate_committee_linkages" "webl house_senate_current_campaigns" "cm committee_master" "webk pac_summary" "indiv individual_contributions" "pas2 committee_candidate_contributions" "oth committee_transactions" "oppexp operating_expenditures"
+  for dataset_tuple in \
+   "cn candidate_master" \
+   "ccl candidate_committee_linkages" \
+   "webl house_senate_current_campaigns" \
+   "cm committee_master" \
+   "webk pac_summary" \
+   "indiv individual_contributions" \
+   "pas2 committee_candidate_contributions" \
+   "oth committee_transactions" \
+   "oppexp operating_expenditures"
     do
       set -- $dataset_tuple
-      echo  "downloading $2 ..."
-      echo  $(full_url $1 $year)
-      curl -s $(full_url $1 $year) | \
+      fec_abbreviation=$1
+      table_name=$2
+      url=$(full_url $fec_abbreviation $year)
+      echo  "downloading $table_name ..."
+      echo "$url"
+      curl -s $(full_url $fec_abbreviation $year) | \
         funzip | \
         iconv -c -t UTF-8 | \
         tr -d '\010' \
-        > "./data/$year/$2.txt"
+        > "./data/$year/$table_name.txt"
     done
 }
 
@@ -49,7 +61,7 @@ pg_load_table_year() {
 
 pg_register_functions
 for year in "$@"
-do
-  download_year $year
-  pg_load_year $year
-done
+  do
+    download_year $year
+    pg_load_year $year
+  done
