@@ -29,7 +29,7 @@ download_year() {
       url=$(full_url $fec_abbreviation $year)
       echo  "downloading $table_name ..."
       echo "$url"
-      curl -s $(full_url $fec_abbreviation $year) | \
+      curl -s "$url" | \
         funzip | \
         iconv -c -t UTF-8 | \
         tr -d '\010' \
