@@ -29,11 +29,11 @@ download_year() {
       table_name=$2
       url=$(full_url "$fec_abbreviation" "$year")
       echo  "downloading $table_name ..."
-      echo "$url"
       if [ "$table_name" = "individual_contributions" ]
       then
         echo "this is a large file, it may take a few minutes"
       fi
+      echo "$url"
       curl -s "$url" | \
       # funzip unzips the first file in the zip archive.
       # In most cases, the archive only has one file.
@@ -94,6 +94,13 @@ pg_register_functions
 pg_create_tables
 for year in "$@"
   do
-    download_year "$year"
-    pg_load_year "$year"
+    if (( $year % 2 == 0 ))
+    then
+      download_year "$year"
+      pg_load_year "$year"
+    else
+      echo "The FEC indexes data per federal election cycle which is every other year."
+      next_year=$(($year+1))
+      echo "For transactions from $year try looking at the $next_year files."
+    fi
   done
