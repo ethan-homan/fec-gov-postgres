@@ -13,8 +13,12 @@ is to make the published bulk data easily accessible for analysis in a database.
 ### Setting up Postgres
 
 #### Using Homebrew (OSX)
-This will install postgres on your machine and then start it as a service. If you do this
+
+If you don't have Homebrew go [here](https://brew.sh/) and install it.
+
+Then run this to install postgres on your machine and then start it as a service. If you do this,
 then there is no further configuration needed to use the scripts here.
+
 ```bash
 brew install postres
 brew services start postgres
