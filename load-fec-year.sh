@@ -80,7 +80,13 @@ pg_register_functions() {
 pg_load_table_year() {
   table_name=$1
   year=$2
-  psql -e -c "SELECT load_file('$PWD/data/', '$year', '$table_name.txt', '$table_name')"
+  # psql -e -c "SELECT load_file('$PWD/data/', '$year', '$table_name.txt', '$table_name')"
+  psql -e -c "CREATE TABLE temp_$table_name AS SELECT * FROM $table_name WITH NO DATA";
+  psql -e -c "ALTER TABLE temp_$table_name DROP COLUMN file_year;"
+  head "$PWD/data/$year/$table_name.txt"
+  psql -e -c "\copy temp_$table_name from '$PWD/data/$year/$table_name.txt' (FORMAT CSV, DELIMITER('|'), HEADER FALSE, QUOTE E'\b');"
+  psql -e -c "INSERT INTO $table_name (SELECT *, $year AS file_year FROM temp_$table_name) ON CONFLICT DO NOTHING;"
+  psql -e -c "DROP TABLE temp_$table_name";
 }
 
 pg_create_tables() {
