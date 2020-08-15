@@ -7,8 +7,8 @@ The FEC publishes individual and PAC contributions to candidates in a
 [searchable web app](https://www.fec.gov/data/) and as
 [bulk downloads](https://www.fec.gov/data/browse-data/?tab=bulk-data).
 
-The goal of this project is to lower the barrier to entry for analysis of money in US politics using the bulk downloads by loading the FEC data into a Postgres database. This helps in a couple of ways:
- - Some of the tables (particularly the individual_contributions table) get prohibitively large for ad-hoc analysis on a normal laptop by loading the files directly into pandas or excel.
+The goal of this project is to lower the barrier to entry for analysis of money in US politics by loading the bulk downloads into a Postgres database. This helps in a couple of ways:
+ - Some of the tables (particularly the individual_contributions table) get prohibitively large for ad-hoc analysis using pandas or excel on a normal laptop. Whether or not Postgres will solve this for you depends on your machine, the number of years of data you load, and the queries you run, but it will help in many situations.
  - The normalization of the dataset across a few tables tables lends itself to manipulation using SQL. There are some examples at the end of this README that help demonstrate this.
 
 ## Getting Started
