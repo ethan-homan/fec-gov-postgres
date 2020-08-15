@@ -26,15 +26,13 @@ brew services start postgres
 
 ### Loading Data
 
-This repo consists of three main functional components right now:
+This repo consists of two components right now:
 1. A set of postgres table definitions that are compatible with the schema published by the FEC and
    the data available in their bulk downloads. These are annotated with the comments in the
    FEC's data definition files.
-2. A postgres function to load data from a flat file from the FEC into one of the tables defined by (1.)
-3. A bash function that downloads files from the FEC's public S3 bucket.
+2. A bash script that downloads files from the FEC's public S3 bucket, does some minor character formatting to make sure the files are ready to be loaded, and copies them into the tables defined in 1.
 
-All of these components are stitched together in `load-fec-year.sh` and it can be used like this
-to load data from the last two election cycles -- 2020 and 2018 -- into a postgres database:
+It can be used like this to load data from the last two election cycles -- 2020 and 2018 -- into a postgres database:
 ```bash
 sh load-fec-year.sh 2020 2018
 ```
