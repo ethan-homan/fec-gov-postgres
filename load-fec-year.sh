@@ -95,7 +95,7 @@ for year in "$@"
   do
     if (( $year % 2 == 0 ))
     then
-#      download_year "$year"
+      download_year "$year"
       pg_load_year "$year"
     else
       echo "The FEC indexes data per federal election cycle which is every other year."
