@@ -2,7 +2,8 @@
 
 S3_BUCKET_URL='https://cg-519a459a-0ea3-42c2-b7bc-fa1143481f74.s3-us-gov-west-1.amazonaws.com/bulk-downloads'
 
-DATASET_TUPLES=("cn candidate_master" \
+DATASET_TUPLES=(
+   "cn candidate_master" \
    "ccl candidate_committee_linkages" \
    "webl house_senate_current_campaigns" \
    "cm committee_master" \
@@ -10,7 +11,8 @@ DATASET_TUPLES=("cn candidate_master" \
    "indiv individual_contributions" \
    "pas2 committee_candidate_contributions" \
    "oth committee_transactions" \
-   "oppexp operating_expenditures")
+   "oppexp operating_expenditures"
+)
 
 full_url() {
   dataset_abbreviation=$1
@@ -70,27 +72,24 @@ pg_load_year() {
     done
 }
 
-pg_register_functions() {
-  for function_def in `find sql/functions/*.sql -print`
-    do
-      psql --file "$function_def"
-    done
-}
-
 pg_load_table_year() {
   table_name=$1
   year=$2
-  psql -e -c "SELECT load_file('$PWD/data/', '$year', '$table_name.txt', '$table_name')"
+  psql -e -c "CREATE TABLE temp_$table_name AS SELECT * FROM $table_name WITH NO DATA;"
+  psql -e -c "ALTER TABLE temp_$table_name DROP COLUMN file_year;"
+  psql -e -c "\copy temp_$table_name from '$PWD/data/$year/$table_name.txt' (FORMAT CSV, DELIMITER('|'), HEADER FALSE, QUOTE E'\b');"
+  psql -e -c "INSERT INTO $table_name ( SELECT DISTINCT ON ( temp_$table_name.* ) *, $year AS file_year FROM temp_$table_name ) ON CONFLICT DO NOTHING;"
+  psql -e -c "DROP TABLE temp_$table_name;"
 }
 
 pg_create_tables() {
-  for table_def_file in `find sql/table_definitions/*.sql -print`
+  for table_def_file in `find sql/*.sql -print`
     do
+      echo "creating a table from $table_def_file"
       psql --file "$table_def_file"
     done
 }
 
-pg_register_functions
 pg_create_tables
 for year in "$@"
   do
