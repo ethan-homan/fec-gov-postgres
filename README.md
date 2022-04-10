@@ -23,7 +23,7 @@ Then run this to install postgres on your machine and then start it as a service
 then there is no further configuration needed to use the scripts here.
 
 ```bash
-brew install postres
+brew install postgres
 brew services start postgres
 ```
 
